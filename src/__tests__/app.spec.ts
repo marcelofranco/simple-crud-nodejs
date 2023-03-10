@@ -21,7 +21,7 @@ describe('APP', () => {
             })
     })
 
-    test('internal server error', done => {
+    test('should expect internal server error', done => {
         const mockAllBooks = jest.spyOn(BookController, 'all');
         mockAllBooks.mockImplementation(() => {
             throw new Error();
@@ -38,5 +38,4 @@ describe('APP', () => {
                 done()
             })
     })
-
 })
