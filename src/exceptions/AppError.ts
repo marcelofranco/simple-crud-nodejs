@@ -1,31 +1,31 @@
 export enum HttpCode {
-    OK = 200,
-    CREATED = 201,
-    NO_CONTENT = 204,
-    BAD_REQUEST = 400,
-    NOT_FOUND = 404,
-    DUPLICATED = 409,
-    INTERNAL_SERVER_ERROR = 500,
+  OK = 200,
+  CREATED = 201,
+  NO_CONTENT = 204,
+  BAD_REQUEST = 400,
+  NOT_FOUND = 404,
+  DUPLICATED = 409,
+  INTERNAL_SERVER_ERROR = 500,
 }
 
 interface AppErrorArgs {
-    name?: string;
-    httpCode: HttpCode;
-    description: string;
+  name?: string;
+  httpCode: HttpCode;
+  description: string;
 }
 
 export class AppError extends Error {
-    public readonly name: string;
-    public readonly httpCode: HttpCode;
+  public readonly name: string;
+  public readonly httpCode: HttpCode;
 
-    constructor(args: AppErrorArgs) {
-        super(args.description);
+  constructor(args: AppErrorArgs) {
+    super(args.description);
 
-        Object.setPrototypeOf(this, new.target.prototype);
+    Object.setPrototypeOf(this, new.target.prototype);
 
-        this.name = args.name || 'Error';
-        this.httpCode = args.httpCode;
+    this.name = args.name || "Error";
+    this.httpCode = args.httpCode;
 
-        Error.captureStackTrace(this);
-    }
+    Error.captureStackTrace(this);
+  }
 }
