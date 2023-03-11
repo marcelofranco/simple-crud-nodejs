@@ -41,7 +41,8 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
-    "test": "jest",
+    "test:unit": "jest -c jest.config.ts",
+    "test:integration": "jest -c jest.int.config.ts",
     "lint": "eslint src/ --fix",
     "pretty-quick": "pretty-quick",
     "postinstall": "husky install",
