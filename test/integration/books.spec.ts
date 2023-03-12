@@ -23,6 +23,14 @@ afterAll(async () => {
     await AppDataSource.destroy()
 })
 
+describe('GET /hc', () => {
+    test('should return 200', async () => {
+        const response = await request(app).get("/hc")
+        expect(response.status).toEqual(HttpCode.OK)
+        expect(response.body.message).toEqual('SUCCESS')
+    })
+})
+
 describe('POST /books', () => {
     test('should return 201 and the created book information, and data should persist on database', (done) => {
         request(app)
