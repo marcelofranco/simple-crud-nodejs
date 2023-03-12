@@ -59,6 +59,8 @@ Para garantir que os testes foram executados foi adicionado no pre-commit a exec
 
 Após as validações de código é verificado se a mensagem do commit segue o padrão de [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), impedindo a subida caso contrário.
 
+Padronizando as mensagens do commit a construção de changelog ou documentação é simplificada.
+
 
 ## Testes
 
