@@ -6,7 +6,7 @@ Projeto de uma api (CRUD) em Nodejs com TypeScript, utilizando as seguintes libs
 - [zod](https://zod.dev/)
 
 ## Configurações
-> **IMPORTANTE** O projeto está com apontamento local, não é recomendado para uso produtivo, para isso é necessário ocultar as informações de alguma forma, como por exemplo utilizando variáveis de ambiente com o [dotenv](https://github.com/motdotla/dotenv).
+> **IMPORTANTE** O projeto está com apontamento local, não é recomendado para uso produtivo, para isso é necessário ocultar as informações de conexões de algum modo, como por exemplo utilizando variáveis de ambiente com o [dotenv](https://github.com/motdotla/dotenv).
 
 Para rodar o projeto é necessário ter instalado:
 - [Node 18](https://nodejs.org/pt-br/download/) + [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable)
