@@ -90,12 +90,6 @@ yarn run test:integration
 ```
 > **OBSERVAÇÃO** Para executar os testes integrados localmente é necessário inicializar a base de dados anteriormente com o docker-compose, ou criar uma base local.
 
-Para executar os testes integrados rodar:
-```bash
-yarn run test:integration
-```
-> **OBSERVAÇÃO** Para executar os testes integrados localmente é necessário inicializar a base de dados anteriormente.
-
 ## Testes de performance
 Como demonstrativo foi adicionado um testes de performance da aplicação na pasta "__extras/performance__", para executar os testes a aplicação foi instalada em um container.
 
