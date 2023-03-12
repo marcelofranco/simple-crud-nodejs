@@ -61,6 +61,21 @@ Após as validações de código é verificado se a mensagem do commit segue o p
 
 Padronizando as mensagens do commit a construção de changelog ou documentação é simplificada, possibilitando a adição de uma ferramenta de auto versionamento, por exemplo.
 
+## Healthcheck
+Visto que a única dependência de funcionamento da aplicação é o banco de dados, foi adicionado um endpoint que verifica a disponibilidade da conexão e entidade do banco de dados, e responde indisponível quando não consegue estabeler a conexão.
+
+Endpoint: __/hc__
+
+Em caso de sucesso na conexão a resposta vem com o modelo:
+```json
+{
+    "uptime": 4.382569764, // a quanto tempo que a api encontra-se disponível
+    "message": "SUCCESS",
+    "timestamp": 1678648889088 // momento que foi realizada a chamada do healthcheck
+}
+```
+
+Em caso de falha na conexão a resposta vem com um status code 503 (Serviço indisponível).
 
 ## Testes
 
@@ -74,7 +89,7 @@ Para executar os testes unitários rodar:
 yarn run test:unit
 ```
 
-## Testes integrados
+### Testes integrados
 Os testes integrados assim como os unitários foram construídos com o [jest](https://jestjs.io/) e [supertest](https://github.com/ladjs/supertest).
 
 Os testes se encontram na pasta 'test/integration', e não possuem um mínimo de cobertura definida.
@@ -90,17 +105,15 @@ yarn run test:integration
 ```
 > **OBSERVAÇÃO** Para executar os testes integrados localmente é necessário inicializar a base de dados anteriormente com o docker-compose, ou criar uma base local.
 
-## Testes de performance
+### Testes de performance
 Como demonstrativo foi adicionado um testes de performance da aplicação na pasta "__extras/performance__", para executar os testes a aplicação foi instalada em um container.
 
-É necessário o jmeter instalado na máquina para executar os testes, e é necessário alterar o arquivo de configuração da conexão com a base para o funcionamento no container.
+É necessário o jmeter instalado na máquina para executar os testes, e é necessário alterar o arquivo de ambiente com a conexão com a base para o funcionamento no container.
 
-Arquivo: __src/data-source.ts__
-```typescript
+Arquivo: __.env__
+```
 ...
-export const AppDataSource = new DataSource({
-  type: "postgres",
-  host: "postgres",
+DB_HOST=postgres
 ...
 ```
 
@@ -130,3 +143,6 @@ Além de não ter tratativas de paginação nem otimização no retorno de dados
  | TOTAL  | 28875 | 19462 | 0  | 47222 | 14661.61 | 0.0 | 44.74/sec | 15420.55 | 8.28 | 352916.55 | 
 
 
+## TODO
+- Adicionar um padrão de logs para acompanhar a sanidade da aplicação
+- Melhorar o endpoint de listagem geral (all)

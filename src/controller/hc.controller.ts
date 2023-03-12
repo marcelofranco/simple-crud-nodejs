@@ -6,7 +6,6 @@ import { HttpCode } from "../exceptions/AppError";
 export const healthcheck = async (_request: Request, response: Response) => {
   const healthcheck = {
     uptime: process.uptime(),
-    responseTime: process.hrtime(),
     message: "SUCCESS",
     timestamp: Date.now(),
   };
