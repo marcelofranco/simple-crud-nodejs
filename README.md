@@ -31,14 +31,14 @@ Server has started on port 8080. Open http://localhost:8080/books to see results
 Para realizar validações locais de qualidade de código foi utilizado o plugin [husky](https://typicode.github.io/husky/#/), o plugin foi configurado para que realizasse 3 validações antes do commit:
 
 
-### **1.  Roda o [eslint](https://eslint.org/)**
+### **1.  Rodar o [eslint](https://eslint.org/)**
 
 Responsável por realizar validações estáticas no código, para que o eslint funcionasse no projeto foi utilizado o ferramental [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint), as regras utilizadas pelo eslint no projeto são as padrões.
 
 No [eslint](https://eslint.org/) também foi configurado o [prettier](https://prettier.io/docs/en/install.html), assim o código segue um padrão de formatação evitando conflitos futuros no Git.
 
 
-### **2. Roda o testes unitários**
+### **2. Rodar os testes unitários**
 
 Para garantir que os testes foram executados foi adicionado no pre-commit a execução dos testes unitários, sendo necessário um mínimo de cobertura para permitir o commit.
 ```json
@@ -50,7 +50,7 @@ Para garantir que os testes foram executados foi adicionado no pre-commit a exec
     }
 ```
 
-### **3. Valida a mensagem do commit**
+### **3. Validar a mensagem do commit**
 
 Após as validações de código é verificado se a mensagem do commit segue o padrão de [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), impedindo a subida caso contrário.
 
