@@ -6,9 +6,9 @@ const app = require("./app");
 AppDataSource.initialize()
   .then(async () => {
 
-    app.listen(3000, () => {
+    app.listen(8080, () => {
       console.log(
-        "Server has started on port 3000. Open http://localhost:3000/books to see results"
+        "Server has started on port 8080. Open http://localhost:8080/books to see results"
       );
     });
   })

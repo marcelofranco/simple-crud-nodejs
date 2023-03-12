@@ -26,6 +26,7 @@ app.use((err: AppError, req: Request, res: Response, _next: NextFunction) => {
 });
 
 app.get("/hc", async (_, res: Response) => {
+
   res.status(200).json({
     status: "success",
   });
