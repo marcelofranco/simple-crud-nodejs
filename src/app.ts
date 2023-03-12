@@ -3,6 +3,7 @@ import * as express from "express";
 import { NextFunction, Request, Response } from "express";
 import { AppError, HttpCode } from "./exceptions/AppError";
 import bookRoutes from "./routes/book.routes";
+import hcRoute from "./routes/hc.routes";
 
 const app = express();
 
@@ -25,11 +26,6 @@ app.use((err: AppError, req: Request, res: Response, _next: NextFunction) => {
   }
 });
 
-app.get("/hc", async (_, res: Response) => {
-
-  res.status(200).json({
-    status: "success",
-  });
-});
+app.use("/hc", hcRoute);
 
 module.exports = app;
