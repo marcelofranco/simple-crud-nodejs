@@ -92,7 +92,16 @@ yarn run test:integration
 ## Testes de performance
 Como demonstrativo foi adicionado um testes de performance da aplicação na pasta "__extras/performance__", para executar os testes a aplicação foi instalada em um container.
 
-É necessário o jmeter instalado na máquina para executar os testes.
+É necessário o jmeter instalado na máquina para executar os testes, e é necessário alterar o arquivo de configuração da conexão com a base para o funcionamento no container.
+
+Arquivo: __src/data-source.ts__
+```typescript
+...
+export const AppDataSource = new DataSource({
+  type: "postgres",
+  host: "postgres",
+...
+```
 
 Para rodar a aplicação execute:
 ```shell script
