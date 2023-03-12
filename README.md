@@ -68,17 +68,49 @@ yarn run test:unit
 ```
 
 ## Testes integrados
-
 Os testes integrados assim como os unitários foram construídos com o [jest](https://jestjs.io/) e [supertest](https://github.com/ladjs/supertest).
 
 Os testes se encontram na pasta 'test/integration', e não possuem um mínimo de cobertura definida.
 
-Para melhorar a qualidade da entrega foi configurado no CI a execução dos testes integrados quando efetuado um PR. Porém não existe impedimento de colocar num pre-commit ou deixar disponível para execução local.
+Para melhorar a qualidade da entrega foi configurado no CI (Github Actions) a execução dos testes integrados quando efetuado um PR para a master. Porém não existe impedimento de colocar num pre-commit ou deixar disponível para execução local.
 
-Para executar os testes integrados rodar:
+O arquivo de configuração da CI encontra-se na pasta:
+__.github/workflows__
+
+Para executar os testes integrados localmente rodar:
 ```bash
 yarn run test:integration
 ```
-> **OBSERVAÇÃO** Para executar os testes integrados localmente é necessário inicializar a base de dados anteriormente.
+> **OBSERVAÇÃO** Para executar os testes integrados localmente é necessário inicializar a base de dados anteriormente com o docker-compose, ou criar uma base local.
 
 ## Testes de performance
+Como demonstrativo foi adicionado um testes de performance da aplicação na pasta "__extras/performance__", para executar os testes a aplicação foi instalada em um container.
+
+É necessário o jmeter instalado na máquina para executar os testes.
+
+Para rodar a aplicação execute:
+```shell script
+$ cd extras/performance
+$ docker-compose up -d
+```
+
+Como teste a aplicação foi submetida a um teste de carga com os seguintes parametros:
+
+- Máximo de usuários ativos: 1000
+- Ramp-up (período para atingir o máximo de usuários): 200 segundos
+- Duração do teste: 10 minutos
+
+Resultados:
+
+Como a aplicação não possui otimização de operações de READ/WRITE o throughput caiu com o avanço das requisições, e a média de tempo aumentou consideravelmente após o número máximo de usuários ativos ser atingido.
+
+Além de não ter tratativas de paginação nem otimização no retorno de dados da listagem geral (GET /books).
+
+ |  Request  |  #Samples  |  Avg  |  Min (ms)  |  Max (ms)  |  StdDev  |  Error (%)  |  Throughput   | Received KB/Sec  |  Sent KB/Sec  |  Abg. Bytes  | 
+ |  -------  |  --------  |  ---  |  ---  |  ---  |  ------  |  -----  |  ----------  |  --------------  |  -----------  |  ----------  | 
+ | HTTP Post /books  |  9965  |  18980  |  3  |  46589  |  14552.21  |  0.0  |  15.44/sec  |  7.11  |  4.76  |  471.77  | 
+ | HTTP Get /books  |  9639  |  19802  |  1  |  47222  |  14907.46  |  0.0  |  14.93/sec  |  15408.08  |  1.77  |  1056291.36  | 
+ | HTTP Get /books/:id  | 9271 | 19627 | 0  | 45878 | 14506.67 | 0.0 | 14.37/sec | 6.31 | 1.74 | 450.0 | 
+ | TOTAL  | 28875 | 19462 | 0  | 47222 | 14661.61 | 0.0 | 44.74/sec | 15420.55 | 8.28 | 352916.55 | 
+
+
