@@ -9,6 +9,7 @@ on:
       - "master"
 jobs:
   build:
+    name: Tests
     runs-on: ubuntu-latest
 
     strategy:
