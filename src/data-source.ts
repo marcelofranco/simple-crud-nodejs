@@ -4,7 +4,7 @@ import { Book } from "./entity/Book";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "postgres",
+  host: "localhost",
   port: 5432,
   username: "postgres",
   password: "password",
