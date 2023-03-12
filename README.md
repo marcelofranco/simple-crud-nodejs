@@ -24,7 +24,7 @@ $ yarn run start
 yarn run v1.22.19
 warning package.json: No license field
 ts-node src/server.ts
-Server has started on port 3000. Open http://localhost:3000/books to see results
+Server has started on port 8080. Open http://localhost:8080/books to see results
 ```
 
 ## Pre-commit
