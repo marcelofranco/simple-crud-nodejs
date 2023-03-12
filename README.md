@@ -33,7 +33,12 @@ Para realizar validações locais de qualidade de código foi utilizado o plugin
 
 ### **1.  Rodar o [eslint](https://eslint.org/)**
 
-Responsável por realizar validações estáticas no código, para que o eslint funcionasse no projeto foi utilizado o ferramental [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint), as regras utilizadas pelo eslint no projeto são as padrões.
+Responsável por realizar validações estáticas no código, para que o eslint funcionasse no projeto foi utilizado o ferramental [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint), as regras utilizadas pelo eslint no projeto são as padrões da ferramenta, a única regra desabilitada foi para uso do 'any': 
+```json
+"@typescript-eslint/no-explicit-any": [
+      "off"
+    ]
+```
 
 No [eslint](https://eslint.org/) também foi configurado o [prettier](https://prettier.io/docs/en/install.html), assim o código segue um padrão de formatação evitando conflitos futuros no Git.
 
