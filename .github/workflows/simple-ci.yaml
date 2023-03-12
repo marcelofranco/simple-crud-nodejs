@@ -1,15 +1,11 @@
 name: simple-ci
 on:
-  push:
-    branches:
-      - "master"
-      - "feat/**"
   pull_request:
     branches:
       - "master"
 jobs:
   build:
-    name: Tests
+    name: Testst
     runs-on: ubuntu-latest
 
     strategy:
