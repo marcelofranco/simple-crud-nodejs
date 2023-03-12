@@ -40,7 +40,7 @@ No [eslint](https://eslint.org/) também foi configurado o [prettier](https://pr
 
 ### **2. Roda o testes unitários**
 
-Para garantir que os testes foram executados foi adicionado no pre-commit a execução dos testes unitários, sendo que é necessário um mínimo de cobertura para permitir o commit.
+Para garantir que os testes foram executados foi adicionado no pre-commit a execução dos testes unitários, sendo necessário um mínimo de cobertura para permitir o commit.
 ```json
 "global": {
       "branches": 50,
@@ -60,7 +60,7 @@ Após as validações de código é verificado se a mensagem do commit segue o p
 ### Testes unitários
 Todos testes unitários foram escritos utilizando o framework [jest](https://jestjs.io/), o mesmo foi utilizado para avaliar a cobertura. E todos se encontram dentro da respectivas pastas do código em teste.
 
-As requisições dos endpoints nos testes foram realizados utilizando a biblioteca [supertest](https://github.com/ladjs/supertest).
+As requisições dos endpoints nos testes foram realizadas utilizando a biblioteca [supertest](https://github.com/ladjs/supertest).
 
 Para executar os testes unitários rodar:
 ```bash
@@ -74,5 +74,11 @@ Os testes integrados assim como os unitários foram construídos com o [jest](ht
 Os testes se encontram na pasta 'test/integration', e não possuem um mínimo de cobertura definida.
 
 Para melhorar a qualidade da entrega foi configurado no CI a execução dos testes integrados quando efetuado um PR. Porém não existe impedimento de colocar num pre-commit ou deixar disponível para execução local.
+
+Para executar os testes integrados rodar:
+```bash
+yarn run test:integration
+```
+> **OBSERVAÇÃO** Para executar os testes integrados localmente é necessário inicializar a base de dados anteriormente.
 
 ## Testes de performance
