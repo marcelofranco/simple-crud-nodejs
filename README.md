@@ -99,23 +99,18 @@ Para melhorar a qualidade da entrega foi configurado no CI (Github Actions) a ex
 O arquivo de configuração da CI encontra-se na pasta:
 __.github/workflows__
 
+> **OBSERVAÇÃO** Para executar os testes integrados localmente é necessário inicializar a base de dados anteriormente com o docker-compose, ou criar uma base local.
 Para executar os testes integrados localmente rodar:
 ```bash
 yarn run test:integration
 ```
-> **OBSERVAÇÃO** Para executar os testes integrados localmente é necessário inicializar a base de dados anteriormente com o docker-compose, ou criar uma base local.
+
+## EXTRAS
 
 ### Testes de performance
 Como demonstrativo foi adicionado um testes de performance da aplicação na pasta "__extras/performance__", para executar os testes a aplicação foi instalada em um container.
 
-É necessário o jmeter instalado na máquina para executar os testes, e é necessário alterar o arquivo de ambiente com a conexão com a base para o funcionamento no container.
-
-Arquivo: __.env__
-```
-...
-DB_HOST=postgres
-...
-```
+É necessário o jmeter instalado na máquina para executar os testes.
 
 Para rodar a aplicação execute:
 ```shell script
@@ -142,7 +137,29 @@ Além de não ter tratativas de paginação nem otimização no retorno de dados
  | HTTP Get /books/:id  | 9271 | 19627 | 0  | 45878 | 14506.67 | 0.0 | 14.37/sec | 6.31 | 1.74 | 450.0 | 
  | TOTAL  | 28875 | 19462 | 0  | 47222 | 14661.61 | 0.0 | 44.74/sec | 15420.55 | 8.28 | 352916.55 | 
 
+### Testes de contrato
+Como exemplo foi adicionado um teste de contrato utilizando o [pactjs](https://github.com/pact-foundation/pact-js), na pasta de "__extras/contract-test__".
+
+Para exemplificar uma aplicação consumidora foi construída **books-consumer**, em seu único endpoint é realizado um fetch do endpoint **GET /books/:id** e uma validações propositalmente com erro afim de simular uma quebra de contrato.
+
+A aplicação consumidora espera que o campo **edition** seja do tipo Number, e que as datas venham formatadas, porém a API **GET /books/:id** retorna o campo como string e as datas em outro formato.
+
+O contrato é gerado no consumidor e é validado localmente com o provider utilizando a [pact_verifier_cli](https://docs.pact.io/implementation_guides/rust/pact_verifier_cli).
+
+Para rodar o teste de contrato localmente foi adicionado um script shell:
+```shell script
+$ cd extras/contract-test
+$ chmod +x pact-verifier.sh
+$ ./pact-verifier.sh
+```
+
+Após a execução é gerado o resultado em um arquivo json "result.json".
+```json
+"actual": "{\"book\":{\"author\":\"Teste\",\"created_at\":\"2023-03-12T20:10:13.000Z\",\"deleted_at\":null,\"edition\":\"1\",\"id\":1,\"name\":\"Teste\",\"released\":\"2023-03-12\",\"updated_at\":\"2023-03-12T20:10:13.000Z\"}}",
+"expected": "{\"author\":\"Teste\",\"created_at\":\"3/12/2023, 9:10:00 PM\",\"deleted_at\":null,\"edition\":1,\"id\":1,\"name\":\"Teste\",\"updated_at\":\"3/12/2023, 9:10:00 PM\"}",
+```
 
 ## TODO
 - Adicionar um padrão de logs para acompanhar a sanidade da aplicação
 - Melhorar o endpoint de listagem geral (all)
+- Adicionar o Broker do pact e automatizar as validações de contrato
