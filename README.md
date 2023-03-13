@@ -100,6 +100,7 @@ O arquivo de configuração da CI encontra-se na pasta:
 __.github/workflows__
 
 > **OBSERVAÇÃO** Para executar os testes integrados localmente é necessário inicializar a base de dados anteriormente com o docker-compose, ou criar uma base local.
+
 Para executar os testes integrados localmente rodar:
 ```bash
 yarn run test:integration
@@ -137,7 +138,15 @@ Além de não ter tratativas de paginação nem otimização no retorno de dados
  | HTTP Get /books/:id  | 9271 | 19627 | 0  | 45878 | 14506.67 | 0.0 | 14.37/sec | 6.31 | 1.74 | 450.0 | 
  | TOTAL  | 28875 | 19462 | 0  | 47222 | 14661.61 | 0.0 | 44.74/sec | 15420.55 | 8.28 | 352916.55 | 
 
+---
+
 ### Testes de contrato
+> __OBSERVAÇÃO__
+>
+> O exemplo de teste de contrato está em uma branch separada por conta do executável do pact.
+>
+> Para executar utilize a branch **feat/contract-test**
+
 Como exemplo foi adicionado um teste de contrato utilizando o [pactjs](https://github.com/pact-foundation/pact-js), na pasta de "__extras/contract-test__".
 
 Para exemplificar uma aplicação consumidora foi construída **books-consumer**, em seu único endpoint é realizado um fetch do endpoint **GET /books/:id** e uma validações propositalmente com erro afim de simular uma quebra de contrato.
@@ -158,6 +167,8 @@ Após a execução é gerado o resultado em um arquivo json "result.json".
 "actual": "{\"book\":{\"author\":\"Teste\",\"created_at\":\"2023-03-12T20:10:13.000Z\",\"deleted_at\":null,\"edition\":\"1\",\"id\":1,\"name\":\"Teste\",\"released\":\"2023-03-12\",\"updated_at\":\"2023-03-12T20:10:13.000Z\"}}",
 "expected": "{\"author\":\"Teste\",\"created_at\":\"3/12/2023, 9:10:00 PM\",\"deleted_at\":null,\"edition\":1,\"id\":1,\"name\":\"Teste\",\"updated_at\":\"3/12/2023, 9:10:00 PM\"}",
 ```
+
+---
 
 ## TODO
 - Adicionar um padrão de logs para acompanhar a sanidade da aplicação
