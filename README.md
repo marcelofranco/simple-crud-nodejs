@@ -145,7 +145,7 @@ Além de não ter tratativas de paginação nem otimização no retorno de dados
 >
 > O exemplo de teste de contrato está em uma branch separada por conta do executável do pact.
 >
-> Para executar utilize a branch **feat/contract-test**
+> Para rodar utilize a branch **feat/contract-test**
 
 Como exemplo foi adicionado um teste de contrato utilizando o [pactjs](https://github.com/pact-foundation/pact-js), na pasta de "__extras/contract-test__".
 
