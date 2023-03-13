@@ -34,5 +34,8 @@
     "import/resolver": {
       "typescript": {}
     }
-  }
+  },
+  "ignorePatterns": [
+    "extras/*.ts"
+  ]
 }

@@ -1,0 +1,67 @@
+{
+  "consumer": {
+    "name": "BooksConsumer"
+  },
+  "interactions": [
+    {
+      "description": "a request for my book",
+      "providerStates": [
+        {
+          "name": "I have a book"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/books/1"
+      },
+      "response": {
+        "body": [
+          [
+            {
+              "author": "Teste",
+              "created_at": "3/12/2023, 9:10:00 PM",
+              "deleted_at": null,
+              "edition": 1,
+              "id": 1,
+              "name": "Teste",
+              "updated_at": "3/12/2023, 9:10:00 PM"
+            }
+          ]
+        ],
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "11.0.2"
+    },
+    "pactRust": {
+      "ffi": "0.4.0",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "BooksProvider"
+  }
+}

@@ -13,6 +13,6 @@ export const AppDataSource = new DataSource({
   synchronize: true,
   logging: false,
   entities: [Book],
-  migrations: [],
+  migrations: ["src/seeds/*.ts"],
   subscribers: [],
 });

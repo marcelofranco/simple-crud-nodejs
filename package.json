@@ -40,7 +40,7 @@
     "zod": "^3.21.4"
   },
   "scripts": {
-    "start": "ts-node src/server.ts",
+    "start": "DB_HOST=localhost ts-node src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "test:unit": "jest -c jest.config.ts",
     "test:integration": "jest -c jest.int.config.ts",

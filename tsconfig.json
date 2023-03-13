@@ -12,5 +12,8 @@
       "experimentalDecorators": true,
       "sourceMap": true,
       "strict": true
-   }
+   },
+   "exclude": [
+      "extras"
+   ]
 }
